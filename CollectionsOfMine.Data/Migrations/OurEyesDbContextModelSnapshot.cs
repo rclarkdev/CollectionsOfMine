@@ -10,8 +10,8 @@ using CollectionsOfMine.Data.Context;
 
 namespace CollectionsOfMine.Data.Migrations
 {
-    [DbContext(typeof(CollectionnsOfMineDbContext))]
-    partial class OurEyesDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CollectionsOfMineDbContext))]
+    partial class CollectionsOfMineDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -97,7 +97,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("ItemTemplate");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Area", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Area", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,7 +140,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("Areas");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Attribute", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Attribute", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,7 +171,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("Attributes");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Category", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Category", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -199,7 +199,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Collection", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Collection", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -240,7 +240,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("Collections");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.ContentType", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.ContentType", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -268,7 +268,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("ContentTypes");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.File", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.File", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -305,7 +305,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("Files");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Item", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Item", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -350,7 +350,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Template", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Template", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -378,7 +378,7 @@ namespace CollectionsOfMine.Data.Migrations
                     b.ToTable("Templates");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.User", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -417,13 +417,13 @@ namespace CollectionsOfMine.Data.Migrations
 
             modelBuilder.Entity("AttributeItem", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.Attribute", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Attribute", null)
                         .WithMany()
                         .HasForeignKey("AttributesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OurEyes.Data.Models.Item", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Item", null)
                         .WithMany()
                         .HasForeignKey("ItemsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -432,13 +432,13 @@ namespace CollectionsOfMine.Data.Migrations
 
             modelBuilder.Entity("CategoryItem", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.Category", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OurEyes.Data.Models.Item", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Item", null)
                         .WithMany()
                         .HasForeignKey("ItemsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -447,13 +447,13 @@ namespace CollectionsOfMine.Data.Migrations
 
             modelBuilder.Entity("CollectionContentType", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.Collection", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Collection", null)
                         .WithMany()
                         .HasForeignKey("CollectionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OurEyes.Data.Models.ContentType", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.ContentType", null)
                         .WithMany()
                         .HasForeignKey("ContentTypesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -462,13 +462,13 @@ namespace CollectionsOfMine.Data.Migrations
 
             modelBuilder.Entity("FileItem", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.File", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.File", null)
                         .WithMany()
                         .HasForeignKey("FilesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OurEyes.Data.Models.Item", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Item", null)
                         .WithMany()
                         .HasForeignKey("ItemsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -477,77 +477,77 @@ namespace CollectionsOfMine.Data.Migrations
 
             modelBuilder.Entity("ItemTemplate", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.Item", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Item", null)
                         .WithMany()
                         .HasForeignKey("ItemsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OurEyes.Data.Models.Template", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Template", null)
                         .WithMany()
                         .HasForeignKey("TemplatesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Area", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Area", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.Attribute", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Attribute", null)
                         .WithMany("Areas")
                         .HasForeignKey("AttributeId");
 
-                    b.HasOne("OurEyes.Data.Models.Item", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Item", null)
                         .WithMany("Areas")
                         .HasForeignKey("ItemId");
 
-                    b.HasOne("OurEyes.Data.Models.Template", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Template", null)
                         .WithMany("Areas")
                         .HasForeignKey("TemplateId");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Collection", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Collection", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.Area", "Area")
+                    b.HasOne("CollectionsOfMine.Data.Models.Area", "Area")
                         .WithMany("Collections")
                         .HasForeignKey("AreaId");
 
-                    b.HasOne("OurEyes.Data.Models.Template", null)
+                    b.HasOne("CollectionsOfMine.Data.Models.Template", null)
                         .WithMany("Collections")
                         .HasForeignKey("TemplateId");
 
                     b.Navigation("Area");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Item", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Item", b =>
                 {
-                    b.HasOne("OurEyes.Data.Models.Collection", "Collection")
+                    b.HasOne("CollectionsOfMine.Data.Models.Collection", "Collection")
                         .WithMany("Items")
                         .HasForeignKey("CollectionId");
 
                     b.Navigation("Collection");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Area", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Area", b =>
                 {
                     b.Navigation("Collections");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Attribute", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Attribute", b =>
                 {
                     b.Navigation("Areas");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Collection", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Collection", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Item", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Item", b =>
                 {
                     b.Navigation("Areas");
                 });
 
-            modelBuilder.Entity("OurEyes.Data.Models.Template", b =>
+            modelBuilder.Entity("CollectionsOfMine.Data.Models.Template", b =>
                 {
                     b.Navigation("Areas");
 

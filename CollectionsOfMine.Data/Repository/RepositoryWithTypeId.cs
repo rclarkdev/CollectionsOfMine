@@ -6,7 +6,7 @@ namespace CollectionsOfMine.Data.Repository
 {
     public class RepositoryWithTypedId<T, TId> : IRepositoryWithTypedId<T, TId> where T : class
     {
-        public RepositoryWithTypedId(CollectionnsOfMineDbContext context)
+        public RepositoryWithTypedId(CollectionsOfMineDbContext context)
         {
             Context = context;
             DbSet = Context.Set<T>();

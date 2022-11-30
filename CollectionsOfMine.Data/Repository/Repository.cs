@@ -5,7 +5,7 @@ namespace CollectionsOfMine.Data.Repository
     public class Repository<T> : RepositoryWithTypedId<T, long>, IRepository<T>
         where T : class
     {
-        public Repository(CollectionnsOfMineDbContext context) : base(context)
+        public Repository(CollectionsOfMineDbContext context) : base(context)
         {
         }
     }

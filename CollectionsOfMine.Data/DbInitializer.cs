@@ -5,14 +5,14 @@ namespace CollectionsOfMine.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(CollectionnsOfMineDbContext context)
+        public static void Initialize(CollectionsOfMineDbContext context)
         {
             SeedAreas(context);
             SeedTemplates(context);
             SeedContentTypes(context);
         }
 
-        private static void SeedTemplates(CollectionnsOfMineDbContext context)
+        private static void SeedTemplates(CollectionsOfMineDbContext context)
         {
             if (!context.Templates.Any(c => c.Name == "Table"))
             {
@@ -48,7 +48,7 @@ namespace CollectionsOfMine.Data
             context.SaveChanges();
         }
 
-        private static void SeedContentTypes(CollectionnsOfMineDbContext context)
+        private static void SeedContentTypes(CollectionsOfMineDbContext context)
         {
             if (!context.ContentTypes.Any(c => c.Name == "Document"))
             {
@@ -94,7 +94,7 @@ namespace CollectionsOfMine.Data
             context.SaveChanges();
         }
 
-        private static void SeedAreas(CollectionnsOfMineDbContext context)
+        private static void SeedAreas(CollectionsOfMineDbContext context)
         {
             if (!context.Areas.Any(c => c.Name == "Art"))
             {

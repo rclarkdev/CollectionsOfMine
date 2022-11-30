@@ -6,13 +6,13 @@ using File = CollectionsOfMine.Data.Models.File;
 
 namespace CollectionsOfMine.Data.Context
 {
-    public partial class CollectionnsOfMineDbContext : DbContext
+    public partial class CollectionsOfMineDbContext : DbContext
     {
-        public CollectionnsOfMineDbContext()
+        public CollectionsOfMineDbContext()
         {
         }
 
-        public CollectionnsOfMineDbContext(DbContextOptions<CollectionnsOfMineDbContext> options)
+        public CollectionsOfMineDbContext(DbContextOptions<CollectionsOfMineDbContext> options)
             : base(options)
         {
         }
