@@ -1,0 +1,98 @@
+body {
+  padding: 20px;
+  font-family: Helvetica;
+  background-color: #20262e;
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin: 30px 0 30px 5px;
+}
+
+.col-md-3 {
+  padding-right: 5px !important;
+  padding-left: 5px !important;
+}
+
+.topnav {
+  display: none;
+}
+
+.tile-container {
+  text-align: center;
+}
+
+.tile {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  padding: 10px;
+  color: #337ab7;
+  margin-bottom: 20px;
+  height: 420px;
+}
+
+hr {
+  margin: 10px 0px;
+  color: black;
+  background-color: currentColor;
+  border: 0;
+  opacity: .25;
+}
+
+.tile:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.tile:active {
+  box-shadow: 0 1px 4px rgba(0, 180, 0, 0.6);
+  -moz-box-shadow: 0 1px 4px rgba(0, 180, 0, 0.6);
+  -webkit-box-shadow: 0 1px 4px rgba(0, 180, 0, 0.6);
+}
+
+.tile i {
+  font-size: 6em;
+  margin: 25px 20px 20px 20px;
+}
+
+.tile i img {
+  margin-bottom: 10px;
+}
+
+.info {
+  text-align: center;
+  font-size: 13px;
+  padding-top: 20px;
+  color: #fff;
+}
+
+.tile-content p {
+  border-top: 6px solid #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #502e1b;
+  padding: 10px 0;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.6);
+  margin: 0 auto;
+  background-color: #ddd;
+}
+
+img {
+  max-width: 100%;
+  max-height: 360px;
+}
+
+.tile-img {
+  height: 360px;
+}
+
+@media screen and (max-width: 700px) {
+  .tile-container {
+    margin-bottom: 60px;
+  }
+}

@@ -1,0 +1,26 @@
+
+.list ul li {
+  display: inline-block;
+  margin-right: 4px;
+  width: 24%;
+}
+
+.list ul {
+  padding-inline-start: unset !important;
+}
+
+.list ul li button {
+  background-color: #DEDEDE;
+}
+
+.content-btn:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.content-btn:active {
+  box-shadow: 0 1px 4px rgba(0, 180, 0, 0.6);
+  -moz-box-shadow: 0 1px 4px rgba(0, 180, 0, 0.6);
+  -webkit-box-shadow: 0 1px 4px rgba(0, 180, 0, 0.6);
+}

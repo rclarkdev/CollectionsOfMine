@@ -1,0 +1,35 @@
+<div class="component-wrapper">
+  <div class="content-body">
+    <div class="component-title">
+      <h3>{{ collectionsTitle }}</h3>
+    </div>
+    <ng-template #collectionModal let-modal>
+      <div class="modal-body">
+        <app-collection [selectedArea]="selectedArea"
+                        [collectionId]="collectionId"
+                        [createCollection]="createCollection"
+                        (refreshCollections)="refreshCollections($event)"></app-collection>
+      </div>
+    </ng-template>
+
+    <button class="btn btn-sm btn-outline-primary new-collection"
+            (click)="open(collectionModal, true)">
+      New Collection
+    </button>
+
+    <div *ngIf="viewCollections?.length > 0">
+      <div class="table-list" *ngIf="showTable; else tiles">
+
+        <app-table [rows]="viewCollections"
+                   (deleteEvent)="delete($event)"
+                   (editEvent)="edit(collectionModal, $event)"
+                   (refreshCollections)="refreshCollections($event)">
+        </app-table>
+      </div>
+        <ng-template #tiles>
+          <app-tiles [tiles]="viewCollections" [tile]="'collection'"></app-tiles>
+        </ng-template>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+  <div class="card p-4">
+    <div class=" image d-flex flex-column justify-content-center align-items-center">
+      <button class="btn btn-secondary"> <img src="../../assets/eye-png-42314.png" height="100" width="100" /></button>
+
+      <form class="form-horizontal register-form"
+            #f="ngForm"
+            (ngSubmit)="onSubmit(f)"
+            novalidate>
+        <input type="hidden" name="id" [ngModel]="id ?? 0" />
+
+        <h6>First Name:</h6>
+        <input type="text"
+               name="firstName"
+               placeholder="First Name"
+               class="form-control"
+               [ngModel]="firstName" />
+
+        <h6>Last Name:</h6>
+        <input type="text"
+               name="lastName"
+               placeholder="Last Name"
+               class="form-control"
+               [ngModel]="lastName" />
+
+        <h6>Username:</h6>
+        <input type="text"
+               name="username"
+               placeholder="Username"
+               class="form-control"
+               [ngModel]="username" />
+
+        <h6>Email:</h6>
+        <input type="text"
+               name="email"
+               placeholder="Email"
+               class="form-control"
+               [ngModel]="email" />
+
+        <h6>Password:</h6>
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               class="form-control"
+               [ngModel]="password" />
+
+        <p>&nbsp;</p>
+        <button type="submit" class="form-control btn-primary">Sign Up</button>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          Your registration is successful!
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

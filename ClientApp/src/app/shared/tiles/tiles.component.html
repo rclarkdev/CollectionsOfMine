@@ -1,0 +1,13 @@
+<div class="tile-container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let tile of tiles">
+      <div class="tile" (click)="selectTile(tile)">
+        <div class="fa fa-object-group tile-img"><img src="{{tile['imgSrc']}}" /></div>
+        <hr>
+        <div *ngFor="let field of fields">
+          <span *ngIf="field == 'name'">{{ tile[field] }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

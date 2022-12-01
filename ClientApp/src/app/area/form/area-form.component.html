@@ -1,0 +1,26 @@
+<div class="component-title">
+  <h5>{{ area != null ? "Edit Area" : "Create Area" }}</h5>
+</div>
+
+<form class="form-horizontal"
+      #f="ngForm"
+      (ngSubmit)="onSubmit(f)"
+      novalidate>
+  <input type="hidden" name="id" [ngModel]="area?.id ?? 0" />
+
+  <h6>Name:</h6>
+  <input type="text"
+         name="name"
+         placeholder="Name"
+         class="form-control"
+         [ngModel]="area?.name" />
+
+  <h6>Description:</h6>
+  <textarea class="form-control"
+            rows="5"
+            name="description"
+            [ngModel]="area?.description"></textarea>
+
+  <p>&nbsp;</p>
+  <button type="submit" class="form-control btn-primary">Save</button>
+</form>

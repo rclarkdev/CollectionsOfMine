@@ -1,0 +1,33 @@
+<div class="component-wrapper">
+  <div class="content-body">
+    <div class="component-title">
+      <h3>{{itemsTitle}}</h3>
+    </div>
+    <button class="btn btn-sm btn-outline-primary new-item" (click)="open(itemModal)">
+      New Item
+    </button>
+
+    <div id="ItemModal">
+      <ng-template #itemModal let-modal>
+        <div class="modal-header">
+          <button type="button" class="close" (click)="close()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <app-item [createOrEditItem]="true" [itemId]="itemId" [areaId]="areaId" [collection]="collection"></app-item>
+        </div>
+      </ng-template>
+    </div>
+
+    <div *ngIf="viewItems?.length > 0">
+      <div class="table-list" *ngIf="showTable; else tiles">
+        <app-table [rows]="viewItems"
+                   (deleteEvent)="delete($event)"
+                   (editEvent)="edit(itemModal, $event)"></app-table>
+      </div>
+
+      <ng-template #tiles>
+        <app-tiles [tiles]="viewItems" [tile]="'item'" [collection]="collection"></app-tiles>
+      </ng-template>
+    </div>
+  </div>
+</div>

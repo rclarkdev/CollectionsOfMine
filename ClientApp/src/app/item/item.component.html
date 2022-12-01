@@ -1,0 +1,9 @@
+<div id="ItemComponent">
+  <div *ngIf="createOrEditItem; else itemView">
+    <app-item-form [item]="item" [collection]="collection"></app-item-form>
+  </div>
+
+    <ng-template #itemView>
+      <app-item-view [item]="item"></app-item-view>
+    </ng-template>
+</div>

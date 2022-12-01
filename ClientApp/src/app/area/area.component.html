@@ -1,0 +1,10 @@
+<div class="component-wrapper">
+
+    <div *ngIf="isCreateOrEdit; else areaView">
+      <app-area-form [area]="area" (emitRefreshAreas)="emitRefreshAreas($event)"></app-area-form>
+    </div>
+
+    <ng-template #areaView>
+      <app-area-view></app-area-view>
+    </ng-template>
+  </div>

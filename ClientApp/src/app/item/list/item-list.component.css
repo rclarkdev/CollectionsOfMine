@@ -1,0 +1,13 @@
+.dataTables_filter {
+  float: left !important;
+}
+
+.new-item {
+  margin: 0 0 40px 0;
+}
+
+#NewItemLnk:hover {
+  color: green;
+  cursor: pointer;
+  text-decoration: underline;
+}

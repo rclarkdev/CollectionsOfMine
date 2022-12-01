@@ -1,0 +1,27 @@
+<div class="component-wrapper">
+
+  <ng-template #timelineEventModal let-modal>
+    <div class="modal-body">
+      <div>
+        <div class="component-title">
+          <h5>Create Timeline Event</h5>
+        </div>
+        <app-event-form></app-event-form>
+      </div>
+    </div> 
+  </ng-template>
+
+  <div class="timeline-slider">
+    <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+  </div>
+
+  <div class="content-body">
+    <div class="component-wrapper">
+      <div class="timelines-wrapper">
+        <button type="button" class="form-control btn btn-light btn-add-event" (click)="open(timelineEventModal, true)">Add a Timeline Event</button>
+        <app-event></app-event>
+      </div>
+    </div>
+  </div>
+
+</div>

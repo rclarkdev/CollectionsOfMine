@@ -1,0 +1,67 @@
+<div class="component-title">
+  <h4>{{ item != null ? "Edit Item" : "Create Item" }}</h4>
+</div>
+
+<form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <input type="hidden" name="id" [ngModel]="item?.id ?? 0" />
+
+  <h6>Name:</h6>
+  <input type="text"
+         name="name"
+         placeholder="Name"
+         class="form-control"
+         [ngModel]="item?.name" />
+
+  <h6>Description:</h6>
+  <textarea class="form-control"
+            rows="3"
+            name="description"
+            [ngModel]="item?.description"></textarea>
+
+  <div *ngIf="includeCustomContent">
+    <h6>Add Custom Content:</h6>
+    <app-tinymce></app-tinymce>
+  </div>
+
+  <div *ngIf="includePicteres">
+    <h6>Item Image</h6>
+    <app-upload></app-upload>
+  </div>
+
+
+  <!--<h6>Area:</h6>
+  <select *ngIf="areaViewModels"
+          name="areaId"
+          id="areaId"
+          [ngModel]="item?.collection?.area?.id"
+          class="form-control"
+          (change)="selectArea($event.target.value)">
+    <option [ngValue]="null" disabled>Choose your Area</option>
+    <option *ngFor="let area of areaViewModels" [value]="area.id">
+      {{ area.name }}
+    </option>
+  </select>
+
+  <h6>Collection:</h6>
+  <select name="collectionId"
+          id="collectionId"
+          [ngModel]="item?.collection?.id"
+          class="form-control"
+          (change)="selectCollection($event.target.value)">
+    <option [ngValue]="null" disabled>Choose your Collection</option>
+    <option *ngFor="let collection of item.collections"
+            [value]="collection.id">
+      {{ collection.name }}
+    </option>
+  </select>-->
+
+  <h6>Source:</h6>
+  <input type="text"
+         name="source"
+         class="form-control"
+         [ngModel]="item?.source" />
+
+  <p>&nbsp;</p>
+
+  <button type="submit" class="form-control btn-primary">Save</button>
+</form>

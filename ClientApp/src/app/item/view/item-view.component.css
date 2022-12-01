@@ -1,0 +1,27 @@
+
+.custom-content {
+  height: 100%;
+  width: 800px;
+  padding: 100px 5px 60px 5px;
+  text-align: center;
+  background-color: lavender !important;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(122,122,122,1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(122,122,122,1);
+  box-shadow: 0px 0px 5px 1px rgba(122,122,122,1);
+
+}
+
+
+.mat-expansion-panel-header-description {
+  flex-grow: 1.5;
+}
+
+.expansion-panel {
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+}

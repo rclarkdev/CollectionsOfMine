@@ -1,0 +1,26 @@
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="row-border hover"
+>
+  <thead>
+    <tr>
+      <th *ngFor="let field of fields">{{ field == "Id" ? "" : field }}</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows">
+      <td
+        *ngFor="let field of fields"
+        [innerHTML]="field == 'Id' ? '' : row[field]"
+      >
+        {{ field == "Id" ? "" : row[field] }}
+      </td>
+      <td><a href="javascript:void(0)" (click)="editRow(row)">edit</a></td>
+      <td><a href="javascript:void(0)" (click)="deleteRow(row)">delete</a></td>
+    </tr>
+  </tbody>
+</table>

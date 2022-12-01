@@ -1,0 +1,8 @@
+<div id="CollectionComponent">
+  <div *ngIf="isCreateOrEdit; else collectionView">
+    <app-collection-form [selectedArea]="selectedArea" [collection]="collection" (emitRefreshCollections)="emitRefreshCollections($event)"></app-collection-form>
+  </div>
+  <ng-template #collectionView>
+    <app-collection-view></app-collection-view>
+  </ng-template>
+</div>

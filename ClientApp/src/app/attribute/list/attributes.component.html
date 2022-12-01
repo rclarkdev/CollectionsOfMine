@@ -1,0 +1,29 @@
+<div class="component-wrapper">
+  <div class="content-body">
+    <div class="component-title">
+      <h3>Attributes</h3>
+    </div>
+
+    <button class="btn btn-sm btn-outline-primary" (click)="open(attributeModal)">
+      New Attribute
+    </button>
+
+    <ng-template #attributeModal let-modal>
+      <div class="modal-body">
+        <app-attribute [attributeId]="attributeId"></app-attribute>
+      </div>
+    </ng-template>
+
+    <div *ngIf="viewAttributes?.length > 0">
+      <div class="table-list" *ngIf="showTable; else tiles">
+        <app-table [rows]="viewAttributes"
+                   (deleteEvent)="delete($event)"
+                   (editEvent)="edit(attributeModal, $event)"></app-table>
+      </div>
+
+      <ng-template #tiles>
+        <app-tiles [tiles]="viewAttributes"></app-tiles>
+      </ng-template>
+    </div>
+  </div>
+</div>

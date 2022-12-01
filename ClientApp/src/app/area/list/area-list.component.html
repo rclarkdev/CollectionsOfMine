@@ -1,0 +1,29 @@
+<div class="component-wrapper">
+  <div class="content-body">
+    <div class="component-title">
+      <h3>Areas</h3>
+    </div>
+
+    <button class="btn btn-sm btn-outline-primary" (click)="open(areaModal, true)">
+      New Area
+    </button>
+
+    <ng-template #areaModal let-modal>
+      <div class="modal-body">
+        <app-area [areaId]="areaId" [createArea]="createArea" (refreshAreas)="refreshAreas($event)"></app-area>
+      </div>
+    </ng-template>
+
+    <div *ngIf="viewAreas?.length > 0">
+      <div class="table-list" *ngIf="showTable; else tiles">
+        <app-table [rows]="viewAreas"
+                   (deleteEvent)="delete($event)"
+                   (editEvent)="edit(areaModal, $event)"></app-table>
+      </div>
+
+      <ng-template #tiles>
+        <app-tiles [tiles]="viewAreas"></app-tiles>
+      </ng-template>
+    </div>
+  </div>
+</div>
