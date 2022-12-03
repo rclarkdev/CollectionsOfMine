@@ -18,27 +18,27 @@ export class CollectionFormComponent implements OnInit, AfterViewChecked {
   @Input() selectedArea: number;
   @Input() collection: ICollection;
 
-  private areaViewModels: IArea[];
-  private contentTypes: IBase[];
-  private selectedContentTypes: IBase[] = [];
-  private collectionsService: CommonService<ICollection>;
-  private areasService: CommonService<IArea>;
-  private contentTypesService: CommonService<IBase>;
-  private files: FileList;
-  private clickHandlersSet: boolean;
+  areaViewModels: IArea[];
+  contentTypes: IBase[];
+  selectedContentTypes: IBase[] = [];
+  collectionsService: CommonService<ICollection>;
+  areasService: CommonService<IArea>;
+  contentTypesService: CommonService<IBase>;
+  files: FileList;
+  clickHandlersSet: boolean;
 
   constructor(
     private http: HttpClient,
     private uploadService: UploadService,
     private modalService: NgbModal) {
-    this.collectionsService = new CommonService("collections", http);
-    this.areasService = new CommonService("areas", http);
-    this.contentTypesService = new CommonService("contentTypes", http);
+    this.collectionsService = new CommonService(http);
+    this.areasService = new CommonService(http);
+    this.contentTypesService = new CommonService(http);
   }
 
   async ngOnInit() {
-    this.areaViewModels = await this.areasService.getAll();
-    this.contentTypes = await this.contentTypesService.getAll();
+    this.areaViewModels = (await this.areasService.getAll("areas"))!;
+    this.contentTypes = (await this.contentTypesService.getAll("contenttypes"))!;
   }
 
   ngAfterViewChecked() {
@@ -85,7 +85,7 @@ export class CollectionFormComponent implements OnInit, AfterViewChecked {
 
     this.collection = data.value;
     const input = (document.querySelector("input[type=file]") as HTMLInputElement);
-    if (input) this.files = input.files;
+    if (input) this.files = input.files!;
 
     let fileId = 0;
     if (this.files?.length) {
@@ -100,8 +100,8 @@ export class CollectionFormComponent implements OnInit, AfterViewChecked {
         });
     }
     this.collection.FileId = fileId;
-    this.collection.Area = {
-      Base: { Id: data.value.selectedArea } } as IArea;
+    //this.collection.Area = {
+    //  Base: { Id: data.value.selectedArea } } as IArea;
     this.createOrUpdate(this.collection);
   }
 
@@ -113,7 +113,7 @@ export class CollectionFormComponent implements OnInit, AfterViewChecked {
     if (contentTypeBtns) {
       Array.from(contentTypeBtns).forEach(function (element) {
         if (element.classList.contains("selected")) {
-          that.selectedContentTypes.push(that.contentTypes.find(t => t['name'] === element['defaultValue']));
+          that.selectedContentTypes.push(that.contentTypes.find(t => t['name'] === element['defaultValue'])!);
         }
       });
 
@@ -123,8 +123,8 @@ export class CollectionFormComponent implements OnInit, AfterViewChecked {
     }
 
     await (collection["id"]
-      ? this.collectionsService.update(collection)
-      : this.collectionsService.create(collection)
+      ? this.collectionsService.update("collections", collection)
+      : this.collectionsService.create("collections", collection)
     ).then(() => {
       this.modalService.dismissAll();
       this.emitRefreshCollections.emit(true);

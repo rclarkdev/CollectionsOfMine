@@ -6,10 +6,16 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  id = 0;
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  email = '';
+  password = '';
+  username = '';
+  lastname = '';
+  firstname = '';
+
   constructor(private authService: AuthService) { }
   ngOnInit(): void {
   }

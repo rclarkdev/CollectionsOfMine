@@ -14,7 +14,7 @@
       </div>
     </ng-template>
 
-    <div *ngIf="viewAttributes?.length > 0">
+    <div *ngIf="viewAttributes?.length">
       <div class="table-list" *ngIf="showTable; else tiles">
         <app-table [rows]="viewAttributes"
                    (deleteEvent)="delete($event)"

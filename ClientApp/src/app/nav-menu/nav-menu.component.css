@@ -1,7 +1,15 @@
-a.navbar-brand {
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+}
+
+.area-menu {
+  margin-left: 10%;
+}
+
+.nav-item:hover {
+    color: red !important;
 }
 
 html {
@@ -14,5 +22,63 @@ html {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}*/
+
+
+/* (A) ON BIG SCREEN */
+/* (A1) HORIZONTAL MENU */
+#hamItems {
+  display: flex;
 }
+
+  #hamItems a {
+    width: 100%;
+  }
+
+/* (A2) HIDE HAMBURGER ICON */
+#hamNav label, #hamburger {
+  display: none;
+}
+
+/* (B) ON SMALL SCREEN */
+@media only screen and (max-width: 768px) {
+  /* (B1) SHOW HAMBURGER ICON */
+  #hamNav label {
+    display: inline-block;
+  }
+
+  /* (B2) BREAK ITEMS INTO SINGLE COLUMN */
+  #hamItems {
+    flex-wrap: wrap;
+
+  }
+
+  /* (B3) TOGGLE SHOW/HIDE */
+  #hamItems {
+    display: none;
+  }
+
+  #hamNav input:checked ~ #hamItems {
+    display: flex;
+  }
+}
+
+/* (X) NOT IMPORTANT - COSMETICS */
+#hamNav label {
+  font-size: 1.5em;
+}
+
+#hamNav {
+  background: #333;
+}
+
+#hamNav, #hamItems a {
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+  #hamItems a:hover {
+    background: #8a2222;
+  }

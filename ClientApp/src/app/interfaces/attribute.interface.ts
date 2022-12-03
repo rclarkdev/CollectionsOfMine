@@ -1,5 +1,8 @@
-import { IBase } from "./base.interface";
-
 export interface IAttribute {
-  Base: IBase;
+  Id: number;
+  IsDeleted: boolean;
+  UpdatedOn: Date;
+  CreatedOn: Date;
+  Name: string;
+  Description: string;
 }

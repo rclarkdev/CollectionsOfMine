@@ -16,11 +16,11 @@ export class ItemFormComponent implements OnInit {
   @Input() item: IItem;
   @Input() collection: ICollection;
 
-  private contentTypes: [IBase];
-  private includeCustomContent: boolean;
-  private includePicteres: boolean;
-  private includeVideos: boolean;
-  private includeDocuments: boolean;
+  contentTypes: [IBase];
+  includeCustomContent: boolean;
+  includePicteres: boolean;
+  includeVideos: boolean;
+  includeDocuments: boolean;
 
 
   constructor() { }
@@ -35,5 +35,9 @@ export class ItemFormComponent implements OnInit {
     if (this.contentTypes.find(c => c['name'] === "Documents")) this.includeDocuments = true;
 
     debugger;
+  }
+
+  async onSubmit(data) {
+
   }
 }

@@ -18,7 +18,7 @@ export class EventFormComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private modalService: NgbModal) {
-      this.eventsService = new CommonService("events", http);
+    this.eventsService = new CommonService(http);
     }
 
   ngOnInit(): void {
@@ -32,8 +32,8 @@ export class EventFormComponent implements OnInit {
 
   createOrUpdate = async (event) => {
     await (event["id"]
-      ? this.eventsService.update(event)
-      : this.eventsService.create(event)
+      ? this.eventsService.update("events", event)
+      : this.eventsService.create("events", event)
     ).then(() => {
       this.modalService.dismissAll();
       //this.refreshTimeline.emit(true);

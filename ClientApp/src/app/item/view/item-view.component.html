@@ -15,11 +15,11 @@
         </mat-panel-title>
 
         <mat-panel-description class="item-view-title">
-          <p class="item-name" *ngIf="item?.name">{{ item.name }}</p>
+          <p class="item-name" *ngIf="item?.name">{{ item.Name }}</p>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <p class="expantion-panel" *ngIf="item?.description">{{ item.description }}</p>
+      <p class="expantion-panel" *ngIf="item?.description">{{ item.Description }}</p>
     </mat-expansion-panel>
   </mat-accordion>
 
@@ -27,8 +27,8 @@
 
 
 <div class="custom-content">
-  <p class="item-name" *ngIf="item?.name">{{ item.name }}</p>
-  <p class="expantion-panel" *ngIf="item?.description">{{ item.description }}</p>
+  <p class="item-name" *ngIf="item?.Name">{{ item.Name }}</p>
+  <p class="expantion-panel" *ngIf="item?.Description">{{ item.Description }}</p>
   <div *ngIf="item?.SanitizedHtml" [innerHtml]="item.SanitizedHtml"></div>
   <iframe *ngIf="item?.SanitizedIframe" [src]="item.SanitizedIframe" class="item-frame"></iframe>
 </div>

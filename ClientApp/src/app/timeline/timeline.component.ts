@@ -13,8 +13,8 @@ import { IBase } from "../interfaces/base.interface";
   styleUrls: ["./timeline.component.css"],
 })
 export class TimelineComponent implements OnInit {
-  private collectionService: CommonService<IArea>;
-  private eventService: CommonService<IBase>;
+  collectionService: CommonService<IArea>;
+  eventService: CommonService<IBase>;
 
   dateRange: Date[] = this.customDateRange();
   value: number = this.dateRange[0].getTime();
@@ -22,16 +22,17 @@ export class TimelineComponent implements OnInit {
   timelineEvents: IItem[];
 
   constructor(private http: HttpClient, private modalService: NgbModal) {
-    this.eventService = new CommonService("events", http);
+    this.eventService = new CommonService(http);
 
   }
 
   getEvents = () => {
-    this.eventService.getAll().then(function (events) { // TODO: paging
-      this.timelineEvents = events.filter(function (events) {
-        debugger;
-      });
-    });
+    //const that = this;
+    //this.eventService.getAll().then(function (events) { // TODO: paging
+    //  that.timelineEvents = events?.filter(function (events) {
+    //    debugger;
+    //  });
+    //});
   }
 
   open(content: any, createArea: boolean = false) {

@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ICollection } from "../interfaces/collection.interface";
 import { IItem } from "../interfaces/item.interface";
 import { environment } from "../../environments/environment";
+import { Route } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
@@ -10,8 +11,8 @@ import { environment } from "../../environments/environment";
 export class ModelListService {
   private apiUrl: string;
 
-  constructor(private route: string, private http: HttpClient = null) {
-    this.apiUrl = environment.apiRoot + route;
+  constructor(private http: HttpClient) {
+    this.apiUrl = environment.apiRoot;
   }
 
   getCollectionsByAreaId = async (areaId: string) => {

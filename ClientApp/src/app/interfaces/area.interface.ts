@@ -1,9 +1,13 @@
-import { IBase } from "./base.interface";
 import { ICollection } from "./collection.interface";
 import { IItem } from "./item.interface";
 
 export interface IArea {
-  Base: IBase;
+  Id: number;
+  IsDeleted: boolean;
+  UpdatedOn: Date;
+  CreatedOn: Date;
+  Name: string;
+  Description: string;
   Items: [IItem];
   Collections: [ICollection];
 }

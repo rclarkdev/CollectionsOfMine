@@ -3,15 +3,15 @@
 </div>
 
 <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-  <input type="hidden" name="id" [ngModel]="collection?.id ?? 0" />
-  <input type="hidden" name="selectedArea" [ngModel]="selectedArea ?? 0" />
+  <input type="hidden" name="id" [ngModel]="collection.Id" />
+  <input type="hidden" name="selectedArea" [ngModel]="selectedArea" />
 
   <h6>Name:</h6>
   <input type="text"
          name="name"
          placeholder="Name"
          class="form-control"
-         [ngModel]="collection?.name"
+         [ngModel]="collection.Name"
          required />
 
   <h6>Area:</h6>
@@ -21,8 +21,8 @@
           id="areaId"
           [ngModel]="selectedArea"
           class="form-control">
-    <option *ngFor="let area of areaViewModels" [value]="area.id">
-      {{ area.name }}
+    <option *ngFor="let area of areaViewModels" [value]="area.Id">
+      {{ area.Name }}
     </option>
   </select>
 
@@ -30,14 +30,14 @@
   <textarea class="form-control"
             rows="5"
             name="description"
-            [ngModel]="collection?.description"></textarea>
+            [ngModel]="collection.Description"></textarea>
 
 
   <h6>Type content in this collection:</h6>
   <div class="list">
     <ul>
       <li *ngFor="let contentType of contentTypes">
-        <input type="button" value="{{ contentType.name }}" class="content-btn form-control btn-{{ contentType.name }}" />
+        <input type="button" value="{{ contentType.Name }}" class="content-btn form-control btn-{{ contentType.Name }}" />
       </li>
     </ul>
   </div>

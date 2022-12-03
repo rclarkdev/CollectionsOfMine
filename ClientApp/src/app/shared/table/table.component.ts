@@ -7,7 +7,7 @@ import { DataTableService } from "../../services/data-table.service";
   styleUrls: ["./table.component.css"],
 })
 export class TableComponent implements OnInit {
-  private fields: string[];
+  fields: string[];
   @Input() rows: any[];
 
   @Output() editEvent: EventEmitter<any> = new EventEmitter();

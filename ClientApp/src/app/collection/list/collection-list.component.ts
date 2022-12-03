@@ -17,18 +17,18 @@ declare const Buffer: any;
   styleUrls: ["./collection-list.component.css"],
 })
 export class CollectionListComponent implements OnInit {
-  private collections: ICollection[];
-  private viewCollections: object[] = [];
-  private showTable: boolean = true;
-  private collectionsTitle: string;
-  private collectionsService: CommonService<ICollection>;
-  private areasService: CommonService<IArea>;
-  private filesService: CommonService<IFile>;
-  private modelListService: ModelListService;
-  private response: { dbPath: "" };
-  private selectedArea: string;
-  private collectionId: string;
-  private createCollection: boolean;
+  collections: ICollection[];
+  viewCollections: object[] = [];
+  showTable: boolean = true;
+  collectionsTitle: string;
+  collectionsService: CommonService<ICollection>;
+  areasService: CommonService<IArea>;
+  filesService: CommonService<IFile>;
+  modelListService: ModelListService;
+  response: { dbPath: "" };
+  selectedArea: number;
+  collectionId: number;
+  createCollection: boolean;
 
   constructor(
     private router: Router,
@@ -37,9 +37,9 @@ export class CollectionListComponent implements OnInit {
     private dataTableService: DataTableService,
     private modalService: NgbModal
   ) {
-    this.collectionsService = new CommonService("collections", http);
-    this.areasService = new CommonService("areas", http);
-    this.filesService = new CommonService("files", http);
+    this.collectionsService = new CommonService(http);
+    this.areasService = new CommonService(http);
+    this.filesService = new CommonService(http);
   }
 
   open(content: any, createCollection: boolean = false) {
@@ -56,38 +56,41 @@ export class CollectionListComponent implements OnInit {
 
   selectedAreaCollections = () => {
     this.activeRoute.paramMap.subscribe(async (params: ParamMap) => {
-      this.selectedArea = params.get("id");
+      this.selectedArea = Number(params.get("id"));
       if (this.selectedArea) {
         let area = await this.areasService.getById(this.selectedArea);
-        this.collectionsTitle = area["name"];
-        this.collections = area["collections"];
-        this.viewCollections.length = 0;
-        const that = this;
-        this.collections.forEach(async function (collection) {
 
-          const fileId = collection["fileId"];
-          let imgSrc = "";
-          await that.filesService.getById(fileId).then(function (file) {
-            if (file) {
-              imgSrc = 'data:image/jpeg;base64,' + file['base64'];
-            }
-          });          
+        if (area) {
+          this.collectionsTitle = area["name"];
+          this.collections = area["collections"];
+          this.viewCollections.length = 0;
+          const that = this;
+          this.collections.forEach(async function (collection) {
 
-          let viewcollection = {
-            id: collection["id"],
-            name: collection["name"],
-            description: collection["description"],
-            imgSrc: imgSrc
-          };
-          that.viewCollections.push(viewcollection);
-        });
+            const fileId = collection["fileId"];
+            let imgSrc = "";
+            await that.filesService.getById(fileId).then(function (file) {
+              if (file) {
+                imgSrc = 'data:image/jpeg;base64,' + file['base64'];
+              }
+            });
+
+            let viewcollection = {
+              id: collection["id"],
+              name: collection["name"],
+              description: collection["description"],
+              imgSrc: imgSrc
+            };
+            that.viewCollections.push(viewcollection);
+          });
+        }
       }
     });
   }
 
   allCollections = async () => {
     const that = this;
-    await this.collectionsService.getAll().then(function (collections) {
+    await this.collectionsService.getAll("collections").then(function (collections) {
       that.collectionsService.setTypes(collections);
       that.collectionsService.typesObservable.subscribe((collections) => {
         that.collections = collections;
@@ -114,16 +117,16 @@ export class CollectionListComponent implements OnInit {
 }
 
   getCollections = async () => {
-    if (this.activeRoute.routeConfig.path === "collections") {
+    if (this.activeRoute?.routeConfig?.path === "collections") {
      this.allCollections();
     } else {
       this.showTable = false;
-      this.modelListService = new ModelListService("collections", this.http);
+      this.modelListService = new ModelListService(this.http);
       this.selectedAreaCollections();
     }
   };
 
-  refreshCollections = async () => {
+  refreshCollections = async (e) => {
     await this.getCollections();
   }
 

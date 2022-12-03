@@ -23,7 +23,7 @@ export class AreaFormComponent implements OnInit {
     private http: HttpClient,
     private modalService: NgbModal
   ) {
-    this.areasService = new CommonService("areas", http);
+    this.areasService = new CommonService(http);
   }
 
   ngOnInit(): void {}
@@ -34,8 +34,8 @@ export class AreaFormComponent implements OnInit {
 
   createOrUpdate = async (area) => {
     await (area["id"]
-      ? this.areasService.update(area)
-      : this.areasService.create(area)
+      ? this.areasService.update("areas", area)
+      : this.areasService.create("areas", area)
     ).then(() => {
       this.router.navigate(["areas"]);
       this.modalService.dismissAll();

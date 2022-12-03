@@ -1,7 +1,11 @@
-import { IBase } from "./base.interface";
 
 export interface IFile {
-  Base: IBase;
+  Id: number;
+  IsDeleted: boolean;
+  UpdatedOn: Date;
+  CreatedOn: Date;
+  Name: string;
+  Description: string;
   Type: string;
   Base64: string;
   Bytes: string;

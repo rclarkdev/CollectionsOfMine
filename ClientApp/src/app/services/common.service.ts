@@ -16,27 +16,27 @@ export class CommonService<Type> {
   private typesSource = new BehaviorSubject<Type[]>([]);
   typesObservable = this.typesSource.asObservable();
 
-  private typeSource = new BehaviorSubject<Type>(null);
+  private typeSource = new BehaviorSubject<any>({});
   typeObservable = this.typeSource.asObservable();
 
-  constructor(private route: string, private http: HttpClient = null) {
-    this.apiUrl = environment.apiRoot + route;
+  constructor(private http: HttpClient) {
+    this.apiUrl = environment.apiRoot;
   }
 
-  public create = async (type) => {
-    return await this.http.post(this.apiUrl, type).toPromise();
+  public create = async (type, route) => {
+    return await this.http.post(this.apiUrl + route, type).toPromise();
   };
 
-  public update = async (type) => {
-    return await this.http.patch(this.apiUrl, type).toPromise();
+  public update = async (type, route) => {
+    return await this.http.patch(this.apiUrl + route, type).toPromise();
   };
 
-  public delete = async (id) => {
-    return await this.http.delete(this.apiUrl + "/" + id).toPromise();
+  public delete = async (route) => {
+    return await this.http.delete(this.apiUrl + route).toPromise();
   };
 
-  getAll = async () => {
-    return await this.http.get<Type[]>(this.apiUrl).toPromise();
+  getAll = async(route) => {
+    return await this.http.get<Type[]>(this.apiUrl + route).toPromise();
   };
 
   getById = async (id) => {

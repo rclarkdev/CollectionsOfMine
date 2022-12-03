@@ -13,11 +13,11 @@ import { AreaListComponent } from "./list/area-list.component";
   styleUrls: ["./area.component.css"],
 })
 export class AreaComponent implements OnInit {
-  private area: IArea;
-  private collections: ICollection[] = [];
-  private areasService: CommonService<IArea>;
-  private collectionsService: CommonService<ICollection>;
-  private isCreateOrEdit: boolean;
+  area: IArea;
+  collections: ICollection[] = [];
+  areasService: CommonService<IArea>;
+  collectionsService: CommonService<ICollection>;
+  isCreateOrEdit: boolean;
 
   @Input() createArea: boolean;
   @Input() areaId: string;
@@ -30,26 +30,26 @@ export class AreaComponent implements OnInit {
     private http: HttpClient,
     private modalService: NgbModal
   ) {
-    this.areasService = new CommonService("areas", http);
-    this.collectionsService = new CommonService("collections", http);
+    this.areasService = new CommonService(http);
+    this.collectionsService = new CommonService(http);
   }
 
   async ngOnInit() {
 
     if (this.createArea) {
       this.isCreateOrEdit = true;
-      this.areaId = null;
+      this.areaId = "";
     }
 
     
     if (this.areaId) {
       this.isCreateOrEdit = true;
-      this.area = await this.areasService.getById(this.areaId);
+      this.area = (await this.areasService.getById(this.areaId))!;
       this.areaEmitter.emit(this.area);
     }
   }
 
-  emitRefreshAreas = () => {
+  emitRefreshAreas = (e) => {
     this.refreshAreas.emit();
   }
 }

@@ -17,7 +17,7 @@
       New Collection
     </button>
 
-    <div *ngIf="viewCollections?.length > 0">
+    <div *ngIf="viewCollections?.length">
       <div class="table-list" *ngIf="showTable; else tiles">
 
         <app-table [rows]="viewCollections"

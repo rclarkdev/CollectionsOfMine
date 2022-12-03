@@ -13,13 +13,13 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./attributes.component.css"],
 })
 export class AttributesComponent implements OnInit {
-  private attributes: IAttribute[];
-  private viewAttributes: object[] = [];
-  private showTable: boolean = true;
-  private attributesTitle: string;
-  private attributesService: CommonService<IAttribute>;
-  private response: { dbPath: "" };
-  private attributeId: string;
+  attributes: IAttribute[];
+  viewAttributes: object[] = [];
+  showTable: boolean = true;
+  attributesTitle: string;
+  attributesService: CommonService<IAttribute>;
+  response: { dbPath: "" };
+  attributeId: string;
 
   constructor(
     private router: Router,
@@ -28,7 +28,7 @@ export class AttributesComponent implements OnInit {
     private dataTableService: DataTableService,
     private modalService: NgbModal
   ) {
-    this.attributesService = new CommonService("attributes", http);
+    this.attributesService = new CommonService(http);
   }
 
   open(content: any) {
@@ -46,7 +46,7 @@ export class AttributesComponent implements OnInit {
       that.attributesService.setTypes(attributes);
 
       that.attributesService.typesObservable.subscribe(async (attributes) => {
-        if (that.activeRoute.routeConfig.path === "attributes") {
+        if (that.activeRoute?.routeConfig?.path === "attributes") {
           that.attributesTitle = " Attributes";
           that.dataTableService.setDtTrigger(attributes);
 
@@ -70,7 +70,7 @@ export class AttributesComponent implements OnInit {
   }
 
   getAttributes = async () => {
-    return await this.attributesService.getAll();
+    return await this.attributesService.getAll("attributes");
   };
 
   edit = async (content, id) => {

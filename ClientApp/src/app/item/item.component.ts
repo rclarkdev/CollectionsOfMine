@@ -20,22 +20,22 @@ declare var tinymce: any;
 })
 export class ItemComponent implements OnInit {
 
-  private sanitizedText: SafeHtml = '';
-  private item: IItem;
-  private collectionViewModel: ICollection;
-  private attributeViewModels: IAttribute[];
-  private selectedAttributes: IAttribute[];
-  private areaViewModels: IArea[];
-  private itemService: CommonService<IItem>;
-  private areaService: CommonService<IArea>;
-  private collectionService: CommonService<ICollection>;
-  private attributeService: CommonService<IAttribute>;
-  private modelListService: ModelListService;
-  private showCollections: boolean;
-  private isCreateOrEdit: boolean;
-  private collectionId: string;
-  private files: FileList;
-  private sanatizedHtml: SafeHtml = '';
+  sanitizedText: SafeHtml = '';
+  item: IItem;
+  collectionViewModel: ICollection;
+  attributeViewModels: IAttribute[];
+  selectedAttributes: IAttribute[];
+  areaViewModels: IArea[];
+  itemService: CommonService<IItem>;
+  areaService: CommonService<IArea>;
+  collectionService: CommonService<ICollection>;
+  attributeService: CommonService<IAttribute>;
+  modelListService: ModelListService;
+  showCollections: boolean;
+  isCreateOrEdit: boolean;
+  collectionId: string;
+  files: FileList;
+  sanatizedHtml: SafeHtml = '';
 
   @Input() createOrEditItem: boolean;
   @Input() areaId: string;
@@ -48,16 +48,16 @@ export class ItemComponent implements OnInit {
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {
-    this.itemService = new CommonService("items", http);
-    this.areaService = new CommonService("areas", http);
-    this.collectionService = new CommonService("collections", http);
-    this.attributeService = new CommonService("attributes", http);
+    this.itemService = new CommonService(http);
+    this.areaService = new CommonService(http);
+    this.collectionService = new CommonService(http);
+    this.attributeService = new CommonService(http);
   }
 
   async ngOnInit() {
 
       await this.route.paramMap.subscribe((params: ParamMap) => {
-        this.collectionId = params.get("id");
+        this.collectionId = params.get("id")!;
       });
 
       if (!this.collectionId) {
@@ -66,7 +66,7 @@ export class ItemComponent implements OnInit {
 
     if (this.itemId) {
 
-      this.item = await this.itemService.getById(this.itemId);
+      this.item = (await this.itemService.getById(this.itemId))!;
       this.sanatizedHtml = this.sanitizeText(this.item["htmlContent"]);
 
       const that = this;
@@ -86,7 +86,7 @@ export class ItemComponent implements OnInit {
   }
 
   selectArea = async (areaId: string) => {
-    this.modelListService = new ModelListService("collections", this.http);
+    this.modelListService = new ModelListService(this.http);
     this.modelListService
       .getCollectionsByAreaId(areaId)
       .then(function (collections) {});
@@ -99,7 +99,7 @@ export class ItemComponent implements OnInit {
   onSubmit = async (data) => {
     this.item = data.value;
     const input = (document.querySelector("input[type=file]") as HTMLInputElement);
-    if (input) this.files = input.files;
+    if (input && input.files) this.files = input.files;
 
     this.item.HtmlContent = tinymce.activeEditor.getContent();
 
@@ -111,17 +111,17 @@ export class ItemComponent implements OnInit {
 
     const collection = div.getElementsByTagName("img");
 
-    let imgParentEl: HTMLElement = null;
+    let imgParentEl: HTMLElement = new HTMLElement;
     if (collection.length > 0) {
-      imgParentEl = (collection[0] as HTMLImageElement).parentElement;
+      imgParentEl = ((collection[0] as HTMLImageElement).parentElement)!;
 
       imgParentEl.className = "tiny-img";
     }
 
     this.item.HtmlContent = div.innerHTML;
 
-    this.item.Collection = await this.collectionService
-      .getById(data.value.collectionId ?? this.collectionId);
+    this.item.Collection = (await this.collectionService
+      .getById(data.value.collectionId ?? this.collectionId))!;
 
     if (this.files?.length) {
       const fileToUpload = this.files[0];
@@ -131,11 +131,11 @@ export class ItemComponent implements OnInit {
         .uploadFile(fileToUpload)
         .then(async (response: any) => {
           if (response && response.body) {
-            that.item.FileViewModels = [{ Base: { Id: response.body } }] as [IFile];
+            that.item.FileViewModels = [ { Id: response.body }] as [IFile];
 
             await (that.item["id"]
-              ? this.itemService.update(that.item)
-              : this.itemService.create(that.item)
+              ? this.itemService.update("items", that.item)
+              : this.itemService.create("items", that.item)
             ).then(() => {
               location.reload();
             });
@@ -144,8 +144,8 @@ export class ItemComponent implements OnInit {
 
     } else {
       let callMethod = !this.itemId
-        ? this.itemService.create(this.item)
-        : this.itemService.update(this.item);
+        ? this.itemService.create("items", this.item)
+        : this.itemService.update("items", this.item);
 
       await callMethod.then(() => {
         location.reload();

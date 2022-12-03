@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Attribute } from "@angular/compiler";
+import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { IAttribute } from "../interfaces/attribute.interface";
 import { CommonService } from "../services/common.service";
@@ -10,25 +11,26 @@ import { CommonService } from "../services/common.service";
   styleUrls: ["./attribute.component.css"],
 })
 export class AttributeComponent implements OnInit {
-  private attribute: IAttribute;
-  private attributesService: CommonService<IAttribute>;
-  private id: string;
+  attribute: IAttribute;
+  @Input() attributeId: string;
+  attributesService: CommonService<IAttribute>;
+  id: string;
 
   constructor(
     private router: Router,
     private http: HttpClient,
     private route: ActivatedRoute
   ) {
-    this.attributesService = new CommonService("attributes", http);
+    this.attributesService = new CommonService(http);
   }
 
   async ngOnInit() {
     await this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = params.get("id");
+      this.id = params.get("id")!;
     });
 
     if (this.id) {
-      this.attribute = await this.attributesService.getById(this.id);
+      this.attribute = (await this.attributesService.getById(this.id))!;
     }
   }
 
@@ -38,8 +40,8 @@ export class AttributeComponent implements OnInit {
 
   createOrUpdate = async (attribute) => {
     await (attribute["id"]
-      ? this.attributesService.update(attribute)
-      : this.attributesService.create(attribute)
+      ? this.attributesService.update("attributes", attribute)
+      : this.attributesService.create("attributes", attribute)
     ).then(() => {
       this.router.navigate(["attributes"]);
     });

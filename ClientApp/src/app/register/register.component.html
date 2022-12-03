@@ -8,21 +8,21 @@
             #f="ngForm"
             (ngSubmit)="onSubmit(f)"
             novalidate>
-        <input type="hidden" name="id" [ngModel]="id ?? 0" />
+        <input type="hidden" name="id" [ngModel]="id" />
 
         <h6>First Name:</h6>
         <input type="text"
                name="firstName"
                placeholder="First Name"
                class="form-control"
-               [ngModel]="firstName" />
+               [ngModel]="firstname" />
 
         <h6>Last Name:</h6>
         <input type="text"
                name="lastName"
                placeholder="Last Name"
                class="form-control"
-               [ngModel]="lastName" />
+               [ngModel]="lastname" />
 
         <h6>Username:</h6>
         <input type="text"

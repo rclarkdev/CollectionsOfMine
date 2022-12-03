@@ -7,8 +7,8 @@ import { UploadService } from "../services/upload.service";
   styleUrls: ["./upload.component.css"],
 })
 export class UploadComponent implements OnInit {
-  public progress: number;
-  public message: string;
+  progress: number;
+  message: string;
   baseUrl: string;
 
   constructor(private uploadService: UploadService) {}
@@ -20,13 +20,15 @@ export class UploadComponent implements OnInit {
       document.querySelector("input[type=file]") as HTMLInputElement
     ).files;
 
-    if (files.length === 0) {
+    if (files?.length === 0) {
       return;
     }
 
-    const fileToUpload = files[0];
-
-    this.uploadService.uploadFile(fileToUpload);
+    if (files?.length && files.length > 0) {
+      const fileToUpload = files[0];
+      this.uploadService.uploadFile(fileToUpload);
+    }
+    
 
     //this.http.post(this.baseUrl + 'file', formData, { reportProgress: true, observe: 'events' })
 

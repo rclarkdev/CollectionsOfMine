@@ -5,20 +5,20 @@
     </div>
 
     <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-      <input type="hidden" name="id" [ngModel]="attribute?.id ?? 0" />
+      <input type="hidden" name="id" [ngModel]="attribute.Id" />
 
       <h6>Name:</h6>
       <input type="text"
              name="name"
              placeholder="Name"
              class="form-control"
-             [ngModel]="attribute?.name" />
+             [ngModel]="attribute.Name" />
 
       <h6>Description:</h6>
       <textarea class="form-control"
                 rows="5"
                 name="description"
-                [ngModel]="attribute?.description"></textarea>
+                [ngModel]="attribute.Description"></textarea>
 
       <p>&nbsp;</p>
       <button type="submit" class="form-control btn-primary">Save</button>

@@ -14,14 +14,14 @@ import { Subject } from "rxjs";
   styleUrls: ["./area-list.component.css"],
 })
 export class AreaListComponent implements OnInit {
-  private areas: IArea[];
-  private viewAreas: object[] = [];
-  private area: string;
-  private showTable: boolean = true;
-  private areasService: CommonService<IArea>;
-  private response: { dbPath: "" };
-  private areaId: string;
-  private createArea: boolean;
+  areas: IArea[];
+  viewAreas: object[] = [];
+  area: string;
+  showTable: boolean = true;
+  areasService: CommonService<IArea>;
+  response: { dbPath: "" };
+  areaId: string;
+  createArea: boolean;
 
   @ViewChild(DataTableDirective, { static: false })
   private dtElement: DataTableDirective;
@@ -37,7 +37,7 @@ export class AreaListComponent implements OnInit {
     private dataTableService: DataTableService,
     private modalService: NgbModal
   ) {
-    this.areasService = new CommonService("areas", http);
+    this.areasService = new CommonService(http);
   }
 
   open(content: any, createArea: boolean = false) {
@@ -50,9 +50,9 @@ export class AreaListComponent implements OnInit {
 
   async ngOnInit() {
 
-    await this.activeRoute.paramMap.subscribe((params: ParamMap) => {
-      this.area = params.get("area");
-    });
+    this.activeRoute.paramMap.subscribe((params: ParamMap) => {
+          this.area = params.get("area")!;
+      });
 
     this.allAreas();
 
@@ -81,13 +81,13 @@ export class AreaListComponent implements OnInit {
   }
 
   getAreas = async () => {
-    return await this.areasService.getAll();
+    return await this.areasService.getAll("areas");
   };
 
-  refreshAreas = () => {
+  refreshAreas = (e) => {
     this.allAreas();
   }
-
+  
   edit = async (content, id) => {
     this.areaId = id;
     this.open(content);
@@ -96,7 +96,7 @@ export class AreaListComponent implements OnInit {
   delete = async (id) => {
     if (confirm("Are you sure?")) {
       await this.areasService.delete(id);
-      this.refreshAreas();
+      this.refreshAreas(this);
       this.rerender();
     }
   };
@@ -104,7 +104,7 @@ export class AreaListComponent implements OnInit {
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.destroy();
-      this.dtTrigger.next();
+     // this.dtTrigger.next();
     });
   }
 }

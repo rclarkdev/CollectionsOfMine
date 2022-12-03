@@ -6,20 +6,20 @@
       #f="ngForm"
       (ngSubmit)="onSubmit(f)"
       novalidate>
-  <input type="hidden" name="id" [ngModel]="area?.id ?? 0" />
+  <input type="hidden" name="id" [ngModel]="area.Id" />
 
   <h6>Name:</h6>
   <input type="text"
          name="name"
          placeholder="Name"
          class="form-control"
-         [ngModel]="area?.name" />
+         [ngModel]="area.Name" />
 
   <h6>Description:</h6>
   <textarea class="form-control"
             rows="5"
             name="description"
-            [ngModel]="area?.description"></textarea>
+            [ngModel]="area.Description"></textarea>
 
   <p>&nbsp;</p>
   <button type="submit" class="form-control btn-primary">Save</button>

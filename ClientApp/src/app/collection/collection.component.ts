@@ -12,12 +12,12 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./collection.component.css"],
 })
 export class CollectionComponent implements OnInit {
-  private collection: ICollection;
-  private collectionsService: CommonService<ICollection>;
-  private areaViewModels: IArea[];
-  private areasService: CommonService<IArea>;
-  private id: string;
-  private isCreateOrEdit: boolean;
+  collection: ICollection;
+  collectionsService: CommonService<ICollection>;
+  areaViewModels: IArea[];
+  areasService: CommonService<IArea>;
+  id: string;
+  isCreateOrEdit: boolean;
 
   @Input() selectedArea: number;
   @Input() collectionId: number;
@@ -32,26 +32,26 @@ export class CollectionComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal
   ) {
-    this.collectionsService = new CommonService("collections", http);
-    this.areasService = new CommonService("areas", http);
+    this.collectionsService = new CommonService(http);
+    this.areasService = new CommonService(http);
   }
 
   async ngOnInit() {
 
     if (this.createCollection) {
       this.isCreateOrEdit = true;
-      this.collectionId = null;
+      this.collectionId = 0;
     }
 
     if (this.collectionId) {
       this.isCreateOrEdit = true;
-      this.collection = await this.collectionsService.getById(this.collectionId);
+      this.collection = (await this.collectionsService.getById(this.collectionId))!;
       this.selectedArea = this.collection?.['area']?.['id'] ?? this.selectedArea;
       this.collectionEmitter.emit(this.collection);
     }
   }
 
-  emitRefreshCollections = () => {
+  emitRefreshCollections = (e) => {
     this.refreshCollections.emit();
   }
 

@@ -1,45 +1,58 @@
-<header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">CollectionsOfMine</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
-          </li>
-        </ul>
-        <app-login-menu></app-login-menu>
-      </div>
-    </div>
-  </nav>
-</header>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a href="#" class="navbar-brand">OurEyes</a>
+
+  <ul class="navbar-nav flex-grow area-menu">
+    <li class="nav-item"
+        *ngFor="let area of areas"
+        [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" [routerLink]="['/area/' + area.Id]">
+        {{
+        area.Name
+        }}
+      </a>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav mr-auto" routerLinkActive="active">
+    <li class="nav-item">
+    </li>
+    <li class="nav-item" *ngIf="showAdminBoard">
+      <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+    </li>
+    <li class="nav-item" *ngIf="showModeratorBoard">
+      <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+    </li>
+    <li class="nav-item">
+      <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+    <li class="nav-item">
+      <a href="javascript:void(0)" (click)="open(registerModal, true)" class="nav-link">Sign Up</a>
+    </li>
+    <li class="nav-item">
+      <a href="javascript:void(0)" (click)="open(loginModal, true)" class="nav-link">Login</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+    <li class="nav-item">
+      <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+    </li>
+    <li class="nav-item">
+      <a href="javascript:void(0)" class="nav-link" (click)="logout()">LogOut</a>
+    </li>
+  </ul>
+</nav>
+
+<ng-template #loginModal let-modal>
+  <div class="modal-body">
+    <app-login></app-login>
+  </div>
+</ng-template>
+
+<ng-template #registerModal let-modal>
+  <div class="modal-body">
+    <app-register></app-register>
+  </div>
+</ng-template>

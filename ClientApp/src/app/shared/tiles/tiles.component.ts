@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ICollection } from "../../interfaces/collection.interface";
 
 @Component({
   selector: "app-tiles",
@@ -7,9 +8,10 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./tiles.component.css"],
 })
 export class TilesComponent implements OnInit {
-  private fields: string[];
+  fields: string[];
   @Input() tiles: any[];
   @Input() tile: string;
+  @Input() collection: ICollection;
 
   constructor(private router: Router,
     private route: ActivatedRoute) { }

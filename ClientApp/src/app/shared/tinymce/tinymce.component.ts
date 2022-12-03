@@ -16,14 +16,18 @@ export class TinymceComponent implements OnInit {
     input.click();
 
     input.onchange = function () {
-      var file = input.files[0];
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        callback(e.target.result, {
-          alt: file.name,
-        });
-      };
-      reader.readAsDataURL(file);
+      if (input.files) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          if (e.target) {
+            callback(e.target.result, {
+              alt: file.name,
+            });
+          }
+        };
+        reader.readAsDataURL(file);
+      }
     };
   };
 

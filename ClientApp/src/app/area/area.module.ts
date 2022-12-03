@@ -21,9 +21,9 @@ import { EditorModule } from "@tinymce/tinymce-angular";
 import { TinymceComponent } from "../shared/tinymce/tinymce.component";
 import { IframeComponent } from "../shared/iframe/iframe.component";
 import { ItemViewComponent } from "../item/view/item-view.component";
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+//import { MatExpansionModule } from '@angular/material/expansion';
+//import { MatFormFieldModule } from '@angular/material/form-field';
+//import { MatInputModule } from '@angular/material/input';
 import { AreaFormComponent } from './form/area-form.component';
 import { AreaViewComponent } from './view/area-view.component';
 import { ItemFormComponent } from '../../app/item/form/item-form.component';
@@ -62,9 +62,9 @@ import { TimelineComponent } from "./../timeline/timeline.component";
     CollectionViewComponent
   ],
   imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatExpansionModule,
+    //MatFormFieldModule,
+    //MatInputModule,
+    //MatExpansionModule,
     CommonModule,
     FormsModule,
     NgbModule,

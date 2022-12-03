@@ -3,20 +3,20 @@
 </div>
 
 <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-  <input type="hidden" name="id" [ngModel]="item?.id ?? 0" />
+  <input type="hidden" name="id" [ngModel]="item.Id" />
 
   <h6>Name:</h6>
   <input type="text"
          name="name"
          placeholder="Name"
          class="form-control"
-         [ngModel]="item?.name" />
+         [ngModel]="item.Name" />
 
   <h6>Description:</h6>
   <textarea class="form-control"
             rows="3"
             name="description"
-            [ngModel]="item?.description"></textarea>
+            [ngModel]="item.Description"></textarea>
 
   <div *ngIf="includeCustomContent">
     <h6>Add Custom Content:</h6>
@@ -38,7 +38,7 @@
           (change)="selectArea($event.target.value)">
     <option [ngValue]="null" disabled>Choose your Area</option>
     <option *ngFor="let area of areaViewModels" [value]="area.id">
-      {{ area.name }}
+      {{ area.Name }}
     </option>
   </select>
 
@@ -51,7 +51,7 @@
     <option [ngValue]="null" disabled>Choose your Collection</option>
     <option *ngFor="let collection of item.collections"
             [value]="collection.id">
-      {{ collection.name }}
+      {{ collection.Name }}
     </option>
   </select>-->
 
@@ -59,7 +59,7 @@
   <input type="text"
          name="source"
          class="form-control"
-         [ngModel]="item?.source" />
+         [ngModel]="item.Source" />
 
   <p>&nbsp;</p>
 
